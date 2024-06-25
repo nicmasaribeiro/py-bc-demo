@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logknot</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+    payment =(e)=> {
+        let email = document.getElementById('email').value;
+        let url = 'https://buy.stripe.com/test_cN214V3pEezT8gwfYY' + '?prefilled_email='+email;
+        window.location.replace(url) ;
+    }
+</script>
+    <input type="text" id="email" placeholder="email">
+    <button onclick="payment();">Submit</button>
+
+
+{% endblock %}
+
+</body>
+</html>

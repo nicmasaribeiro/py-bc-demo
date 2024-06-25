@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logknot</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <div>
+        Username : {{client.get_username()}}    
+    </div>
+    <div>
+        Public Key : {{client.get_public_key()}}    
+    </div>
+    <div>
+        Cash : {{client.wallet.get_settled_cash()}}    
+    </div>
+    
+
+
+{% endblock %}
+
+</body>
+</html>

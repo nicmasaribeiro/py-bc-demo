@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Cash</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+    payment =(e)=>{
+        window.location.href = 'https://buy.stripe.com/test_cN214V3pEezT8gwfYY';
+    }
+    
+    transaction_user_logic =(e)=> {
+        let user = document.getElementById('user').value;
+        let amount = document.getElementById('amount').value;
+        let url = 'http://127.0.0.1:8000/buy-cash/'+ user + '/' + amount;
+//      /set-transaction/<senderkey>/<recipientkey>/<amount>
+        window.location.href = url ;
+    }
+</script>
+    <input type="number" id="user" placeholder="userkey">
+<!--<input type="password" id="password" placeholder="password">-->
+    <input type="number" id="amount" placeholder="transaction amount">
+    <input type = "email" id = "email" placeholder="email"/>
+    <button onclick="transaction_user_logic();">Submit</button>
+    <button onclick="payment();">Confirm</button>
+
+
+        
+    
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logknot</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+    create_user_logic =(e)=> {
+        let invname = document.getElementById('ticker').value;
+        let value = document.getElementById('value').value;
+        let index = document.getElementById('index').value;
+
+        let url = 'http://127.0.0.1:8000/create-investment/'+ invname + '/' + value + '/' + index;
+        window.location.replace(url) ;
+    }
+</script>
+    <input type="text" id="ticker" placeholder="investment name">
+    <input type="number" id="value" placeholder="coin price">
+    <input type="number" id="index" placeholder="userkey">
+    <button onclick="create_user_logic();">Submit</button>
+
+
+{% endblock %}
+
+</body>
+</html>

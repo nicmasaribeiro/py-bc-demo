@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<title>logknot</title>
+			</head>
+			<body>
+				{% extends "base.html" %}
+				
+				{% block content %}
+				
+				{% for i in clients %}
+				
+				
+				{% endfor %}
+				<script>
+					create_user_logic =(e)=> {
+						let username = document.getElementById('user').value;
+						let amount = document.getElementById('amount').value;
+						let url = 'http://127.0.0.1:8000/admix/modify-users/'+ username + '/' + amount;// + '/' + pk;
+						window.location.href = url;
+					}
+				</script>
+				<input type="number" id="user" placeholder="userkey">
+				<input type="number" id="amount" placeholder="amount">
+				<button onclick="create_user_logic();">Submit</button>
+				
+				
+				{% endblock %}
+				
+			</body>
+		</html>
+	</body>
+</html>

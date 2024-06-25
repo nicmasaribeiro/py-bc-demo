@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logknot</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+<script>
+    create_logic =(e)=> {
+        let buyerkey = document.getElementById('buyerkey').value;
+        let value = document.getElementById('value').value;
+        let invkey = document.getElementById('index').value;
+
+        let url = 'http://127.0.0.1:8000/make-investment/'+ value + '/' + invkey + '/' + buyerkey;
+        window.location.replace(url) ;
+    }
+</script>
+    <input type="number" id="buyerkey" placeholder="userkey">
+    <input type="number" id="value" placeholder="invest amount">
+    <input type="number" id="index" placeholder="investment key">
+    <button onclick="create_logic();">Submit</button>
+
+
+{% endblock %}
+
+</body>
+</html>

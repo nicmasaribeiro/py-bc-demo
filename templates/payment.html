@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Subscribe</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <body>
+
+<div class="jumbotron">
+    <form action="/subscribe" method="POST">
+
+      <input type="email" name="email" id="email" placeholder="my@email.com">
+      <br>
+      <input type="hidden" name="plan_id" value="price_1MsqxeJGhGnalPlLepmMh8o5">
+      <br>
+      <div id="card-element"></div>
+      <br>
+      <button id="submit-button" type="submit">Subscribe</button>
+      <br>
+    </form>
+</div>
+
+    <script>
+      var stripe = Stripe('{{ stripe_publishable_key }}');
+      var elements = stripe.elements();
+      var cardElement = elements.create('card');
+      cardElement.mount('#card-element');
+
+      var form = document.querySelector('form');
+      var submitButton = document.querySelector('#submit-button');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitButton.disabled = true;
+
+        stripe.createToken(cardElement).then(function(result) {
+          if (result.error) {
+            submitButton.disabled = false;
+            console.error(result.error.message);
+          } else {
+            var token = result.token.id;
+            form.insertAdjacentHTML('beforeend', '<input type="hidden" name="stripeToken" value="' + token + '">');
+            form.submit();
+          }
+        });
+      });
+    </script>
+  <h3>Already Have an Account?</h3><br>
+<h3><a href ="{{url_for('login')}}">Login Here</a></h3>
+  </body>
+</html>
